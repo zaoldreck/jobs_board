@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
+#https://github.com/mileszs/wicked_pdf
+#gem 'wicked_pdf'
+#gem 'wkhtmltopdf-binary'
+
 #https://github.com/prawnpdf/prawn
-gem 'prawn'
+#gem 'prawn'
 
 #https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave'

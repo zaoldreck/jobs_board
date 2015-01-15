@@ -4,15 +4,13 @@
   </div>
 
   <div class="col-md-2">
+    <br/>
     <% if user_signed_in? && current_user.class.name=='Employer'%>
       <%= link_to "Create Jobs", new_employer_job_path %>
-      <p> <%= Employer %> </p>
     <% elsif user_signed_in? && current_user.class.name=='Employee' && current_user.resume%>
       <%= link_to "Edit Resume", edit_employee_resume_path %>
-      <p> <%= Employee %> </p>
     <% elsif user_signed_in? && current_user.class.name=='Employee' %>
       <%= link_to "Create Resume", new_employee_resume_path %>
-      <p> <%= Employee %> </p>
     <% end %>
   </div>
 
@@ -20,7 +18,7 @@
 
 
 <div class="bs-example" data-example-id="panel-without-body-with-table">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
     <div class="panel-heading"><h4>Jobs Today</h4></div>
     <!-- Table -->
       <table class="table">

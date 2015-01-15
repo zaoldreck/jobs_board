@@ -12,6 +12,11 @@ class EmployeeController < ApplicationController
   def create
   end
 
+  def destroy
+    current_user.destroy
+    redirect_to root_path
+  end
+
   private
   def resume_params
     params.require(:employee).permit(resume: [:salary, :description, :experience, :education, :phone])

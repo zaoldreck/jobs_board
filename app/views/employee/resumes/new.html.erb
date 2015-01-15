@@ -1,35 +1,73 @@
-Add Resume
 <div class="row">
-  <div class="col-md-4 col-lg-4">
-    <div class="panel panel-default">
+  <div class="col-md-2 col-lg-2"></div>
+
+  <div class="col-md-8 col-lg-8">
+    <div class="panel panel-primary">
       <div class="panel-heading">My Resume</div>
 
-      <div style="padding-left: 10px; padding-bottom: 10px;">
-        <%= form_for @employee.build_resume, url: employee_resume_path do |f| %>
-          <%= f.label :description %><br/>
-          <%= f.text_area :description %><br/>
+      <div class="panel-body">
+        <div class="row">
+          <div class=" col-md-12 col-lg-12">
+            <%= form_for @employee.build_resume, url: employee_resume_path do |f| %>
+              <fieldset>
+                <div class="form-group">
+                  <%= f.label :description, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.text_area :description, class: :"form-control", size: "20x4"%>
+                  </div>
+                </div>
 
-          <%= f.label :salary %><br/>
-          <%= f.text_field :salary %><br/>
+                <div class="form-group">
+                  <%= f.label :salary, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.number_field :salary, class: :"form-control", width: "100%", in: 0..1000000 %>
+                  </div>
+                </div>
 
-          <%= f.label :phone %><br/>
-          <%= f.text_field :phone %><br/>
+                <div class="form-group">
+                  <%= f.label :phone, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.telephone_field :phone, class: :"form-control", width: "100%", size: 10 %>
+                  </div>
+                </div>
 
-          <%= f.label :education %><br/>
-          <%= f.text_area :education %><br/>
+                <div class="form-group">
+                  <%= f.label :education, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.text_area :education, class: :"form-control", width: "100%", size: "20x4" %>
+                  </div>
+                </div>
 
-          <%= f.label :experience %><br/>
-          <%= f.text_area :experience %><br/>
+                <div class="form-group">
+                  <%= f.label :experience, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.text_area :experience, class: :"form-control", width: "100%", size: "20x4" %>
+                  </div>
+                </div>
 
-          <%= f.file_field :attach_pdf %><br/>
+                <div class="form-group">
+                  <%= f.label :attach_pdf, class: :"col-sm-4 control-label"  %>
+                </div>
 
-          <%= f.submit "Add" %>
-        <% end %>
+                <div class="col-sm-8"><%= f.file_field :attach_pdf %></div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="pull-right">
+                      <%= f.submit "Add", class: :"btn btn-primary"%>
+                    </div>
+                  </div>
+                </div>
+
+              </fieldset>
+            <% end %>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <div class="col-md-8 col-lg-8" style="margin: 0">
-  </div>
+  <div class="col-md-4 col-lg-4"></div>
 
 </div>

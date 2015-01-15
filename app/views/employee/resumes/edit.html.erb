@@ -1,47 +1,86 @@
-
 <div class="row">
   <div class="col-md-4 col-lg-4">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3>Edit_Resume</h3> </div>
-
-      <div style="padding-left: 10px; padding-bottom: 10px;">
-        <%= form_for [:employee, @resume] do |f| %>
-          <%= f.label :description %><br/>
-          <%= f.text_area :description %><br/>
-
-          <%= f.label :salary %><br/>
-          <%= f.number_field :salary, in: 0..1000000%><br/>
-
-          <%= f.label :phone %><br/>
-          <%= f.telephone_field :phone, size: 10%><br/>
-
-          <%= f.label :education %><br/>
-          <%= f.text_area :education %><br/>
-
-          <%= f.label :experience %><br/>
-          <%= f.text_area :experience %><br/>
-
-          <%= f.file_field :attach_pdf %><br/>
-
-          <%= f.submit "Submit" %>
-        <% end %>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit_Resume</h3>
       </div>
+
+      <div class="panel-body" style="padding-left: 10px; padding-bottom: 10px;">
+        <div class="row">
+          <div class=" col-md-12 col-lg-12">
+            <%= form_for [:employee, @resume] do |f| %>
+              <fieldset>
+                <div class="form-group">
+                  <%= f.label :description, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.text_area :description, class: :"form-control", size: "20x4"%>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :salary, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.number_field :salary, class: :"form-control", width: "100%", in: 0..1000000 %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :phone, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.telephone_field :phone, class: :"form-control", width: "100%", size: 10 %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :education, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.text_area :education, class: :"form-control", width: "100%", size: "20x4" %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :experience, class: :"col-sm-4 control-label"  %>
+                  <div class="col-sm-8">
+                    <%= f.text_area :experience, class: :"form-control", width: "100%", size: "20x4" %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :attach_pdf, class: :"col-sm-4 control-label"  %>
+                </div>
+
+                <div class="col-sm-8"><%= f.file_field :attach_pdf %></div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="pull-right">
+                      <%= f.submit "Submit", class: :"btn btn-primary"%>
+                    </div>
+                  </div>
+                </div>
+
+              <% end %>
+
+            </fieldset>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
   <div class="col-md-8 col-lg-8" style="margin: 0">
     <!--%= image_tag(@resume.attach_pdf) if @resume.attach_pdf? %-->
-    <a href="https://docs.google.com/gview?url=http://prawnpdf.org/manual.pdf&embedded=true">Your Pdf Viewer</a>
 
-    <%url = "#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}" %>
-    <br/>
-    <a href="https://docs.google.com/gview?url=#{url}&embedded=true">Your Pdf Viewer</a>
-
-
-    <iframe src="http://docs.google.com/viewer?url=http://prawnpdf.org/manual.pdf&embedded=true"
-      width="100%" height="800" >
-      <p>Your browser does not support iframes.</p>
-    </iframe>
+    <% if @resume.attach_pdf.to_s.split(".")[1]=="pdf" %>
+      <%=link_to "Open Pdf", "#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}", :target => "_blank" %>
+    <% elsif @resume.attach_pdf.to_s.split(".")[1]=="gif" %>
+      <%=link_to "Open Gif","#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}", :target => "_blank" %>
+    <% elsif @resume.attach_pdf.nil? %>
+      <%= image_tag "#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}", width: "100%", height: "100%" %>
+    <% end %>
   </div>
 
 </div>

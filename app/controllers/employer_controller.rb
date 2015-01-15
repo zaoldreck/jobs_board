@@ -11,4 +11,9 @@ class EmployerController < ApplicationController
   def new
   end
 
+  def destroy
+    current_user.destroy
+    redirect_to root_path
+  end
+
 end
