@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-10">
+    <h2>My Resume</h2>
+  </div>
+  <div class="col-md-2">
+    <h3><%= link_to 'Edit', edit_employee_resume_path(current_user) %></h3>
+
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="jumbotron">
+    <h3><span class="glyphicon glyphicon-user"></span>Name : <%= @resume.name %></h3>
+
+    <h3><span class="glyphicon glyphicon-envelope"></span>Email : <%= @resume.email %></h3>
+
+    <h3><span class="glyphicon glyphicon-phone"></span>Phone : <%= @resume.phone %></h3>
+
+    <h3><span class="glyphicon glyphicon-pencil"></span>Education : <%= @resume.education %></h3>
+
+    <h3><span class="glyphicon glyphicon-briefcase"></span>Experience : <%= @resume.experience %></h3>
+
+    <% if @resume.salary.to_i > 0 %>
+      <h3><span class="glyphicon glyphicon-usd"></span>Salary : <%= @resume.salary %></h3>
+    <% else %>
+      <h3><span class="glyphicon glyphicon-usd"></span>Salary : Negotiate</h3>
+    <% end %>
+
+
+    <h3><span class="glyphicon glyphicon-user"></span>Description : <%= @resume.description %></h3>
+
+  </div>
+</div>
+
+

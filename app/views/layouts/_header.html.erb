@@ -1,0 +1,31 @@
+ <div class="row">
+  <nav class="navbar navbar-default navbar-inverse">
+    <div class="navbar-header col-md-6" style="vertical-align: middle;" >
+      <%= link_to "Job Board", root_path, class: 'navbar-brand' %>
+      <div class="input-group" >
+        <input type="text" class="form-control" placeholder="Search Jobs">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </span>
+      </div><!-- /input-group -->
+    </div>
+
+    <div class="nav navbar-nav navbar-right col-md-4">
+      <% if user_signed_in? %>
+        <li><%= link_to current_user.email , edit_user_registration_path %> </li>
+        <li><%= link_to "Logout" , destroy_user_session_path , method: :delete %> </li>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: 'btn btn-primary', role: 'button' %>
+        <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary', role: 'button' %>
+      <% end %>
+    </div>
+  </nav>
+</div>
+
+<% if notice %>
+  <div class="alert alert-info"> <%= notice %></div>
+<% end %>
+
+<% if alert %>
+  <div class="alert alert-warning"> <%= alert %></div>
+<% end %>

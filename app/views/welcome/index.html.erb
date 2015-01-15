@@ -1,0 +1,56 @@
+<div class="bs-docs-section row">
+  <div class="bs-callout bs-callout-warning col-md-10" id="callout-navs-accessibility">
+    <h3>Find the jobs</h3>
+  </div>
+
+  <div class="col-md-2">
+    <% if user_signed_in? && current_user.class.name=='Employer'%>
+      <%= link_to "Create Jobs", new_employer_job_path %>
+      <p> <%= Employer %> </p>
+    <% elsif user_signed_in? && current_user.class.name=='Employee' && current_user.resume%>
+      <%= link_to "Edit Resume", edit_employee_resume_path %>
+      <p> <%= Employee %> </p>
+    <% elsif user_signed_in? && current_user.class.name=='Employee' %>
+      <%= link_to "Create Resume", new_employee_resume_path %>
+      <p> <%= Employee %> </p>
+    <% end %>
+  </div>
+
+</div>
+
+
+<div class="bs-example" data-example-id="panel-without-body-with-table">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h4>Jobs Today</h4></div>
+    <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Salary</th>
+            <th>Last Update</th>
+            <th>Email<th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @jobs.each_with_index do |job,index| %>
+            <tr>
+              <th scope="row"><%= index+1 %></th>
+              <td><%= job.title %></td>
+              <td><%= job.description %></td>
+              <% if job.salary.to_i > 0 %>
+                <td><%= job.salary %></td>
+              <% else %>
+                <td>Negotiate</td>
+              <% end %>
+              <td><%= job.updated_at.localtime.strftime("At %A %d/%b/%Y %I:%M %p") %></td>
+              <td><%= job.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+

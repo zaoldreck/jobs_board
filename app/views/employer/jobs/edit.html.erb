@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>Edit Jobs</h2></div>
+
+  <div style="padding-left: 10px; padding-bottom: 10px;">
+    <%= form_for @job, url: employer_job_path, method: :patch do |f| %>
+      <div><%= f.label :title %><br/>
+        <%= f.text_field :title %>
+      </div>
+
+      <div><%= f.label :salary %><br/>
+        <%= f.text_field :salary %>
+      </div>
+
+      <div><%= f.label :description %><br/>
+        <%= f.text_field :description %>
+      </div>
+
+      <%= f.submit "Submit" %>
+    <% end %>
+  </div>
+</div>

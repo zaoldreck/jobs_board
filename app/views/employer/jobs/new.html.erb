@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-4 col-lg-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Create Jobs</div>
+
+      <div style="padding-left: 10px; padding-bottom: 10px;">
+        <%= form_for [current_user, @job] do |f| %>
+          <div><%= f.label :title %><br/>
+            <%= f.text_field :title %>
+          </div>
+
+          <div><%= f.label :salary %><br/>
+            <%= f.text_field :salary %>
+          </div>
+
+          <div><%= f.label :description %><br/>
+            <%= f.text_field :description %>
+          </div>
+
+          <%= f.submit "Submit" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-lg-8" style="margin: 0">
+    <div class="bs-example" data-example-id="panel-without-body-with-table">
+      <div class="panel panel-info">
+        <div class="panel-heading">Jobs Request</div>
+        <!-- Table -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Job</th>
+                <th>Description</th>
+                <th>Salary</th>
+                <th>Last Update</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @jobs.each_with_index do |job,index| %>
+                <tr>
+                  <th scope="row"><%= index+1 %></th>
+                  <td><%= job.title %></td>
+                  <td><%= job.description %></td>
+                  <% if job.salary.to_i > 0 %>
+                    <td><%= job.salary %></td>
+                  <% else %>
+                    <td>Negotiate</td>
+                  <% end %>
+                  <td><%= job.updated_at.localtime.strftime("At %A %d/%b/%Y %I:%M %p") %></td>
+                  <td><%= link_to "", edit_employer_job_path(job), class: "glyphicon glyphicon-edit" %></td>
+                  <td><%= link_to "", employer_job_path(job), method: :delete, class: "glyphicon glyphicon-trash" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+  </div>
+
+</div>
