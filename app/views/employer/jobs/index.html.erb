@@ -1,5 +1,5 @@
 <div class="bs-example" data-example-id="panel-without-body-with-table">
-  <div class="panel panel-default">
+  <div class="panel panel-primary">
     <div class="panel-heading">Jobs Request</div>
     <!-- Table -->
       <table class="table">
@@ -10,6 +10,7 @@
             <th>Description</th>
             <th>Salary</th>
             <th>Last Update</th>
+            <th>Request</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +25,14 @@
                 <td>Negotiate</td>
               <% end %>
               <td><%= job.updated_at.localtime.strftime("At %A %d/%b/%Y %I:%M %p") %></td>
+              <% if current_user.jobs.where(id: job.id).first.applies.where(status: "Pending").any? %>
+                <% c = current_user.jobs.where(id: job.id).first.applies.where(status: "Pending").count %>
+                <td>
+                  <%= link_to "#{c}", edit_job_apply_path(id: current_user.jobs.where(id: job.id).first.applies.where(status: "Pending").first , job_id: job.id) %>
+                </td>
+              <% else %>
+                <td>None</td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

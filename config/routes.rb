@@ -9,11 +9,15 @@ Rails.application.routes.draw do
   namespace :employer do
     resources :jobs
   end
+  resource :job do
+    resources :applies
+  end
 
   resources :employees, controller: 'employee'
 
   namespace :employee do
     resource :resume
+
   end
 
   #get 'welcome/index'

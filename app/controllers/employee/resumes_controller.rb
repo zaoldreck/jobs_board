@@ -28,6 +28,11 @@ class Employee::ResumesController < ApplicationController
     if @resume.nil?
       render 'create'
     end
+
+    if @resume.applies
+      @applies = @resume.applies
+    end
+
   end
 
   def update

@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="panel panel-primary col-md-4">
+    <legend><h3>Jobs Information</h3></legend>
+
+    <fieldset>
+      <div class="form-group">
+        <h5 class="col-md-4">Titile : </h5>
+        <h5 class="col-md-8"><%= @job.title %></h5>
+        <legend/>
+      </div>
+
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <h5 class="col-md-4">Description : </h5>
+        <h5 class="col-md-8"><%= @job.description %></h5>
+        <legend/>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group">
+        <h5 class="col-md-4">Salary : </h5>
+        <% if @job.salary.to_i > 0 %>
+          <h5 class="col-md-8"><%= @job.salary %></h5>
+        <% else %>
+          <h5 class="col-md-8">Negotiate</h5>
+        <% end %>
+        <legend/>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="form-group">
+        <h5 class="col-md-4">Last Update : </h5>
+        <h5 class="col-md-8"><%= @job.updated_at.localtime.strftime("At %A %d/%b/%Y %I:%M %p") %></h5>
+        <legend/>
+      </div>
+    </fieldset>
+
+    <legend><h3>Approved</h3></legend>
+    <% @applies.each do |apply|%>
+      <%if apply.status=="Approve" %>
+        <% @resume = apply.resume %>
+        <div>
+          <h6>
+            <span class="glyphicon glyphicon-user"></span>Name : <%= @resume.name %>
+            <span class="glyphicon glyphicon-envelope"></span>Email : <%= @resume.email %>
+          </h6>
+          <h6>
+            <span class="glyphicon glyphicon-phone"></span>Phone : <%= @resume.phone %>
+          </h6>
+          <legend/>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="col-md-8">
+    <div class="panel panel-info" style="padding-left: 10px; padding-right: 15px;">
+      <legend><h3>Request Pending</h3></legend>
+
+      <% @applies.each do |apply|%>
+        <%if apply.status=="Pending" %>
+          <% @resume = apply.resume %>
+          <div class="row">
+            <div class="col-md-6">
+              <h5><span class="glyphicon glyphicon-user"></span>Name : <%= @resume.name %></h5>
+
+              <h5><span class="glyphicon glyphicon-envelope"></span>Email : <%= @resume.email %></h5>
+
+              <h5><span class="glyphicon glyphicon-phone"></span>Phone : <%= @resume.phone %></h5>
+
+              <h5><span class="glyphicon glyphicon-pencil"></span>Education : <%= @resume.education %></h5>
+
+              <h5><span class="glyphicon glyphicon-briefcase"></span>Experience : <%= @resume.experience %></h5>
+
+              <% if @resume.salary.to_i > 0 %>
+                <h5><span class="glyphicon glyphicon-usd"></span>Salary : <%= @resume.salary %></h5>
+              <% else %>
+                <h5><span class="glyphicon glyphicon-usd"></span>Salary : Negotiate</h5>
+              <% end %>
+
+              <h5><span class="glyphicon glyphicon-user"></span>Description : <%= @resume.description %></h5>
+            </div>
+            <div class="col-md-6" style="border-style:solid; border-width:2px; border-color:#666699;">
+              <% if @resume.attach_pdf.to_s.split(".")[1]=="pdf" %>
+                <%=link_to "Open Pdf", "#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}", :target => "_blank" %>
+              <% elsif @resume.attach_pdf.to_s.split(".")[1]=="gif" %>
+                <%=link_to "Open Gif","#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}", :target => "_blank" %>
+              <% elsif @resume.attach_pdf.nil? %>
+                <%= image_tag "#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}", width: "100%", height: "100%" %>
+              <% else %>
+                <%= image_tag "#{request.protocol}#{request.host_with_port}#{@resume.attach_pdf}", width: "100%", height: "100%", :target => "_blank" %>
+              <% end %>
+
+            </div>
+            <div class="col-md-12" style="padding-left: 20px; padding-right: 20px;">
+              <%= link_to "Approve", job_apply_path(id: apply, status: "Approve"), class: :"btn btn-success", method: :patch %>
+              <%= link_to "Reject", job_apply_path(id: apply, status: "Reject") , class: :"btn btn-danger", method: :patch %>
+              <legend style="padding-top: 5px"></legend>
+            </div>
+
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
