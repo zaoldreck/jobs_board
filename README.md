@@ -2,9 +2,9 @@
 **Jobs Board** is my learning project for ruby on rails
 
 ## Core concepts
-1. **Have two main model  Employer , Employee
-2. **Employer can create jobs and description and show on the board
-3. **Employee can send resume to jobs and waiting for owner jobs for apply or reject jobs
+1. Have two main model  Employer , Employee
+2. Employer can create jobs and description and show on the board
+3. Employee can send resume to jobs and waiting for owner jobs for apply or reject jobs
 
 ## System specifications
 
