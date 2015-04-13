@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
 #https://github.com/mileszs/wicked_pdf
 #gem 'wicked_pdf'
 #gem 'wkhtmltopdf-binary'
@@ -22,7 +23,7 @@ gem 'compass-rails'
 gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use Uglifier as compressor for JavaScript assets

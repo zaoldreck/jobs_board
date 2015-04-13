@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150115092144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "applies", force: true do |t|
+  create_table "applies", force: :cascade do |t|
     t.integer  "job_id"
     t.integer  "resume_id"
     t.string   "status"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150115092144) do
   add_index "applies", ["job_id"], name: "index_applies_on_job_id", using: :btree
   add_index "applies", ["resume_id"], name: "index_applies_on_resume_id", using: :btree
 
-  create_table "jobs", force: true do |t|
+  create_table "jobs", force: :cascade do |t|
     t.string   "description"
     t.string   "salary"
     t.datetime "created_at"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20150115092144) do
 
   add_index "jobs", ["employer_id"], name: "index_jobs_on_employer_id", using: :btree
 
-  create_table "resumes", force: true do |t|
+  create_table "resumes", force: :cascade do |t|
     t.string   "description"
     t.string   "salary"
     t.datetime "created_at"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150115092144) do
 
   add_index "resumes", ["employee_id"], name: "index_resumes_on_employee_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "type"
     t.datetime "created_at"
