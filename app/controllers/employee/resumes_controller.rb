@@ -14,11 +14,9 @@ class Employee::ResumesController < ApplicationController
 
   def create
     @resume = current_user.build_resume(resume_params)
-    #@resume.attach_pdf = uploader.retrieve_from_store!(@resume.attach_pdf)
     if @resume.save
       flash[:notice] = "Resume Create!"
       render 'index'
-      #redirect_to :back
     end
   end
 

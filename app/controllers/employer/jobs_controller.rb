@@ -17,9 +17,7 @@ class Employer::JobsController < ApplicationController
   end
 
   def edit
-    #redirect_to new_employer_job_path
     @job = Job.find(params[:id])
-    #@job = current_user.jobs(params[:id])
   end
 
   def destroy

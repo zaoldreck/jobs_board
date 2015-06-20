@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
+
   def index
-    #@users = User.all
     if user_signed_in? && current_user.is_a?(Employee)
       @employee = current_user
     elsif user_signed_in? && current_user.is_a?(Employer)
